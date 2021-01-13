@@ -80,7 +80,7 @@ public class Producto
 		this.fecha = fecha;
 	}
 
-	public boolean isImportado() {
+	public boolean getImportado() {
 		return importado;
 	}
 
