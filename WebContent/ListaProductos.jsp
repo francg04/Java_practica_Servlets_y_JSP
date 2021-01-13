@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*, com.pildorasinformaticas.producto.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,7 @@
 </head>
 <%
 	//obtiene los productos del controlador (Servlet)
-	List<Producto> productos = (List<Producto>) request.getAttribute("lista_productos");
+	//List<Producto> productos = (List<Producto>) request.getAttribute("lista_productos");
 %>
 <body>
 	<table>>
@@ -23,32 +23,19 @@
 		<th>Importado</th>
 		<th class="ultimo">Pais de origen</th>
 	</tr>
-	<%
-		for(Producto producto:productos){%>
+	<c:forEach var="producto" items="${lista_productos}">
+	
 		<tr>
-			<td>
-				<%=producto.getCodigoArt() %>
-			</td>
-			<td>
-				<%=producto.getSeccion() %>
-			</td>
-			<td>
-				<%=producto.getNombreArt() %>
-			</td>
-			<td>
-				<%=producto.getFecha() %>
-			</td>
-			<td>
-				<%=producto.getPrecio() %>
-			</td>
-			<td>
-				<%=producto.getImportado() %>
-			</td>
-			<td>
-				<%=producto.getPaisOrigen() %>
-			</td>
-		</tr>	
-		<%} %>
+			<td> ${producto.codigoArt} </td>
+			<td> ${producto.seccion} </td>
+			<td> ${producto.nombreArt} </td>
+			<td> ${producto.precio} </td>
+			<td> ${producto.fecha} </td>
+			<td> ${producto.importado} </td>
+			<td> ${producto.paisOrigen} </td>
+		</tr>
+			
+	</c:forEach>
 	</table>
 </body>
 </html>
