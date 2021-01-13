@@ -21,10 +21,10 @@
 			<td><label for="txtArticulo">Articulo</label></td><td><input type="text" name="txtArticulo"></td>
 		</tr>
 		<tr>
-			<td><label for="txtFecha">Fecha</label></td><td><input type="Date" name="txtFecha"></td>
+			<td><label for="txtPrecio">Precio</label></td><td><input type="text" name="txtPrecio"></td>
 		</tr>
 		<tr>
-			<td><label for="txtPrecio">Precio</label></td><td><input type="text" name="txtPrecio"></td>
+			<td><label for="txtFecha">Fecha</label></td><td><input type="date" name="txtFecha"></td>
 		</tr>
 		<tr>
 			<td><label>Importado</label></td><td><label for="Si">Si</label> <input type="radio" id="Si"name="rbtImportado" value="true"> <label for="No">No</label> <input type="radio" id="No" name="rbtImportado" value="false"></td>

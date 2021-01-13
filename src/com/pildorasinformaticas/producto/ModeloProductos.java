@@ -56,4 +56,13 @@ public class ModeloProductos
 		}
 		return productos;
 	}
+	public void agregarProducto(Producto producto) {
+		// obtener la conexion
+		
+		// crear la instruccion sql que inserte el producto
+		
+		// establecer los parametros para el producto
+		
+		// ejecutar la instruccion SQL
+	}
 }

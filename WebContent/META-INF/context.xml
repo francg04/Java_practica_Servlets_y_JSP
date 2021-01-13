@@ -1,6 +1,6 @@
 <Context>
 	<Resource name="jdbc/Productos" auth="Container" type="javax.sql.DataSource"
-	maxTotal="15" maxIdel="3" maxWaitMillis="5000"
+	maxTotal="15" maxIdle="3" maxWaitMillis="5000"
 	username="root" password=""
 	driverClassName="com.mysql.cj.jdbc.Driver"
 	url="jdbc:mysql://localhost:3306/proyecto_jsp">

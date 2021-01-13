@@ -1,6 +1,9 @@
 package com.pildorasinformaticas.producto;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import javax.swing.JOptionPane;
 
 /**
  * Servlet implementation class ControladorProductos
@@ -40,19 +44,6 @@ public class ControladorProductos extends HttpServlet
 			throw new ServletException(e);
 		}
 	}
-	/*
-	 * ESPAÑA
-	ITALIA
-	MARRUECOS
-	USA
-	FRANCIA
-	JAPÓN
-	CHINA
-	SUECIA
-	TURQUÍA
-	TAIWÁN
-	 */
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -84,18 +75,77 @@ public class ControladorProductos extends HttpServlet
 		String codigo = request.getParameter("txtCodigo");
 		String seccion = request.getParameter("txtSeccion");
 		String articulo = request.getParameter("txtArticulo");
-		String fecha = request.getParameter("txtFecha");
-		String precio = request.getParameter("txtPrecio");
-		String importado = request.getParameter("rbtImportado");
+		double precio = Double.parseDouble(request.getParameter("txtPrecio"));
+		//-INICIO carga Fecha
+		SimpleDateFormat formato_fecha = new SimpleDateFormat("yyyy-MM-dd");
+		Date fecha = null;
+		
+		try {
+			fecha = formato_fecha.parse(request.getParameter("txtFecha"));
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		//-FIN carga fecha
+		boolean importado = Boolean.parseBoolean(request.getParameter("rbtImportado"));
+		String origen = request.getParameter("txtOrigen");
+		
+		cargarPais(origen);
+		/*//PRUEBAS
+		System.out.println("DATOS: ");
+		System.out.println("Pais de origen: "+origen);
+		System.out.println("Importado: "+importado);
+		System.out.println("Importado: "+fecha);
+		*/
+		/*
+		 * IMPORTANTE: Hay que tener en cuenta que la informacion que DEVUELVE
+		 * el metodo getParameter() SIEMPRE es de TIPO STRING
+		 */
 		
 			
 		//Crear un objeto de tipo Producto
 		
-		//Enviar el objeto al modelo y despues insertar el objeto Producto en la BBDD
+		Producto producto = new Producto(codigo, seccion, articulo, precio, fecha, importado, origen);
 		
+		//Enviar el objeto al modelo y despues insertar el objeto Producto en la BBDD
+		modelo_productos.agregarProducto(producto);
 		//Volver al listado de Productos
 	}
-
+	private void cargarPais(String pais)
+	{
+		switch(pais) {
+		case "espania":{
+			pais="ESPAÑA";
+		}break;
+		case "italia":{
+			pais="ITALIA";
+		}break;
+		case "marruecos":{
+			pais="MARRUECOS";
+		}break;
+		case "usa":{
+			pais="USA";
+		}break;
+		case "francia":{
+			pais="FRANCIA";
+		}break;
+		case "japon":{
+			pais="JAPÓN";
+		}break;
+		case "china":{
+			pais="CHINA";
+		}break;
+		case "suecia":{
+			pais="SUECIA";
+		}break;
+		case "turquia":{
+			pais="TURQUÍA";
+		}break;
+		case "taiwan":{
+			pais="TAIWÁN";
+		}break;
+		}
+	}
 
 	private void obtenerProductos(HttpServletRequest request, HttpServletResponse response)
 	{
