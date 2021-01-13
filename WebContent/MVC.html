@@ -1,0 +1,149 @@
+<!DOCTYPE>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Curso Java - Servlets</title>
+		<link rel="StyleSheet" type="text/css" href="css/estilo_curso.css">
+	</head>
+	<body>
+		<h1 id="titulo_principal">Modelo Vista Controlador (MVC)</h1>
+			<div class="contenido">
+				<dl>
+					<ul>
+						<li>
+							<dt>¿Que es el Modelo Vista Controlador?</dt>
+							<dd>Patron de diseño a la hora de crear aplicaciones de servidor Java</dd>
+						</li>
+						<li>
+							<dt>¿En que consiste este patron de diseño?</dt>
+							<dd>Separar la parte logica de la parte visual de nuestros proyectos</dd>
+						</li>
+						<li>
+							<dt>¿Como lo hace el patron MVC?</dt>
+							<dd>
+								Integrando Servlets y JSP en nuestros proyectos, haciendo que trabajen juntos<br>
+							<ul>
+								<li>Lo Servlets se encargaran de la parte logica</li>
+								<li>JSP se encargara de la parte visual</li>
+							</ul>
+					</dd>
+						</li>
+					</ul>
+				</dl>
+				<br><br><br>
+				<div class="servidor">
+					<div class="contenedor_MVC">
+						<div class="controlador">
+							Controlador<br>(Servlet)
+						</div>
+						<div class="modelo">
+							Modelo<br>(BBDD)
+						</div>
+						<div class="vista">
+							Vista<br>(JSP)
+						</div>
+					</div>
+					Servidor
+				</div>
+				<dl>
+					<dt>¿Como pasamos la informacion del servlet al JSP?</dt>
+					<dd>Esto se logra con una Interfaz RequestDispatcher y un metodo perteneciente a ella llamado forward()</dd>
+				</dl>
+				<br><br>
+				<b class="interfaz">
+				RequestDispatcher
+				<b class="int">I</b>
+				</b>
+				<b class="metodo">
+				forward()
+				<b class="met">M</b>
+				</b>
+				<h1 class="funcionamiento">Ventajas MVC</h1>
+				<ul>
+					<li>
+						Elimina codigo HTML del Servlet (No mas println)
+					</li>
+					<li>
+						Elimina codigo Java en JSP (No mas scriplets)
+					</li>
+					<li>
+						Favorece el desarrollo por varios programadores
+					</li>
+					<li>
+						Favorece el mantenimiento del proyecto (modularizacion)
+					</li>
+					<li>
+						Favorece la depuracion de errores
+					</li>
+					<li>
+						Favorece la escalabilidad del proyecto
+					</li>
+				</ul>
+				<br><br><br>
+				<h1 class="funcionamiento">CRUD</h1>
+				<ul>
+					<li><b class="primera">C</b>reate: Crear, Insertar</li>
+					<li><b class="primera">R</b>ead: Leer</li>
+					<li><b class="primera">U</b>pdate: Actualizar</li>
+					<li><b class="primera">D</b>elete: Borrar</li>
+				</ul>
+				<br><br><br>
+				<h1 class="funcionamiento">Pool de conexiones</h1>
+				<p>
+					Todas las aplicaciones dinamicas Java modernas utilizan para
+					conectar con una Base de Datos lo que se conoce como 
+					"Pool de conexiones" o "conexion pool"
+				</p>
+				<p>
+					Para entender que es un pool de conexiones, debemos primero
+					plantearnos que PROBLEMATICAS pueden dar lugar cuando tenemos 
+					una aplicacion web, una aplicacion de servidor.
+				</p>
+				<p>
+					Cada vez que un CLIENTE realiza una PETICION al SERVIDOR, el 
+					mismo PROCESA esa peticion y se CONECTA a la DB para obtener 
+					la informacion solicitada por el CLIENTE y proceder a realizar 
+					la RESPUESTA para el CLIENTE.
+				</p>
+				<p>
+					Todo este proceso consume recursos de nuestro servidor, y por 
+					cada usuario que realice peticiones, nuestro servidor esta 
+					constantemente ABRIENDO y CERRANDO conexiones con la DB para 
+					poder RESPONDER a esas PETICIONES.
+				</p>
+				<p>
+					EL PROBLEMA: ocurre cuando hay CIENTOS de usuarios lanzando PETICIONES
+					constantemente al SERVIDOR. Si son muchos los usuarios que se conectan 
+					al servidor, llega un momento en donde el servidor empieza a tener 
+					problemas para "dar servicio" a todos estos usuarios y llega un moemnto 
+					en el que el servidor no puede mas, NO TIENE MAS RECURSOS para dar 
+					respuesta a esas peticiones y COLAPSA largando un ERROR, un error por 
+					exceso de conexiones.
+				</p>
+				<p>
+					LA SOLUCION: a este problema se solventa utilizando lo que se denomina 
+					POOL DE CONEXIONES.
+				</p>
+				<p>
+					¿EN QUE CONSISTE?: En lugar de tener que ABRIR y CERRAR conexion CADA VEZ 
+					QUE 1 USUARIO pida informacion, Se crea lo que se conoce como conexion pool 
+					o pool de conexiones y no es ni mas ni menos que <i>UN NUMERO DE CONEXIONES 
+					DETERMINADAS QUE ESTAN <u>SIEMPRE ABIERTAS</u></i>
+				</p>
+				<p>
+					En nuestro Pool de conexiones podremos determinar cuantas conexiones hay, 
+					cuantas pueden permanecer inactivas y cual es el tiempo que una 
+					solicitud puede permanecer a la espera hasta que se desocupe una conexion para poder 
+					ser procesada.
+				</p>
+				<h1 class="funcionamiento">Pasos a seguir para crear un Pool de Conexiones</h1>
+				<ol>
+					<li>Descargar el driver JDBC para MySql</li>
+					<li>Color el driver en la carpeta "WEB-INF/lib"</li>
+					<li>Definir (construir) el pool de conexiones en la carpeta "META-INF/context.xml"</li>
+					<li>Crear una referencia al pool de conexiones desde codigo Java</li>
+				</ol>
+			</div>
+	</body>
+</html>
