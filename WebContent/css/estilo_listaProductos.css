@@ -7,7 +7,11 @@
 	font-style: normal;
 	text-decoration: none;
 }
+#contenedor_boton{
+	margin-left: 1500px;
+}
 table{
+	float:left;
 	border: inset 3px blue;
 	border-radius: 12px;
 }

@@ -13,7 +13,7 @@
 	//List<Producto> productos = (List<Producto>) request.getAttribute("lista_productos");
 %>
 <body>
-	<table>>
+	<table>
 	<tr>
 		<th class="primero">Codigo Articulo</th>
 		<th>Seccion</th>
@@ -37,5 +37,8 @@
 			
 	</c:forEach>
 	</table>
+	<div id="contenedor_boton">
+		<input type="button" value="Insertar Registro" onclick="window.location.href='inserta_producto.jsp'"/>
+	</div>
 </body>
 </html>
