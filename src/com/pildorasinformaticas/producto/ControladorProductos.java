@@ -87,7 +87,7 @@ public class ControladorProductos extends HttpServlet
 		
 		// Colocar atributo correspondiente al Cod_Articulo
 		
-		request.setAttribute("CODIGO_ARTICULO", producto);
+		request.setAttribute("ProductoAtcualizar", producto);
 		
 		// Enviar Producto al formulario de actualizar (jsp)
 		

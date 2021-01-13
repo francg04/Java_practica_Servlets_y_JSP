@@ -115,8 +115,7 @@ public class ModeloProductos
 			
 			// Obtener los datos de respuesta
 			 if(resultado.next()) {
-				 producto = new Producto(resultado.getString("CÓDIGOARTÍCULO"),
-						   				 resultado.getString("SECCIÓN"),
+				 producto = new Producto(resultado.getString("SECCIÓN"),
 						   				 resultado.getString("NOMBREARTÍCULO"),
 						   				 resultado.getDouble("PRECIO"),
 						   				 resultado.getDate("FECHA"),
