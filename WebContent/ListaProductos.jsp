@@ -21,9 +21,17 @@
 		<th>Fecha</th>
 		<th>Precio</th>
 		<th>Importado</th>
-		<th class="ultimo">Pais de origen</th>
+		<th>Pais de origen</th>
+		<th class="ultimo"><input type="button" value="Insertar Registro" onclick="window.location.href='inserta_producto.jsp'"/></th>
 	</tr>
 	<c:forEach var="producto" items="${lista_productos}">
+	
+	<!-- Link para cada producto con su campo clave -->
+	
+	<c:url var="linkTemp" value="ControladorProductos">
+		<c:param name="instruccion" value="cargar"></c:param>
+		<c:param name="Cod_Articulo" value="${producto.codigoArt}"></c:param>
+	</c:url>
 	
 		<tr>
 			<td> ${producto.codigoArt} </td>
@@ -33,12 +41,13 @@
 			<td> ${producto.fecha} </td>
 			<td> ${producto.importado} </td>
 			<td> ${producto.paisOrigen} </td>
+			<td> <a href="${linkTemp}">Actualizar</a> </td>
 		</tr>
 			
 	</c:forEach>
 	</table>
 	<div id="contenedor_boton">
-		<input type="button" value="Insertar Registro" onclick="window.location.href='inserta_producto.jsp'"/>
+		
 	</div>
 </body>
 </html>

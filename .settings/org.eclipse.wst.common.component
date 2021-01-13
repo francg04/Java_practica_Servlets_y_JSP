@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="258-Java-MVC_XI-CRUD_X">
+    <wb-module deploy-name="259-Java-MVC_XII-CRUD_XI">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="258-Java-MVC_XI-CRUD_X"/>
-        <property name="java-output-path" value="/258-Java-MVC_XI-CRUD_X/build/classes"/>
+        <property name="context-root" value="259-Java-MVC_XII-CRUD_XI"/>
+        <property name="java-output-path" value="/259-Java-MVC_XII-CRUD_XI/build/classes"/>
     </wb-module>
 </project-modules>
