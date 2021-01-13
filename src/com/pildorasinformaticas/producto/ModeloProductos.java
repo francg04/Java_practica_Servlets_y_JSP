@@ -56,13 +56,38 @@ public class ModeloProductos
 		}
 		return productos;
 	}
-	public void agregarProducto(Producto producto) {
-		// obtener la conexion
+	public void agregarProducto(Producto producto){
+		Connection conexion = null;
+		PreparedStatement consulta = null;
+		ResultSet resultado = null;
 		
+		// obtener la conexion
+		try {
+		conexion = origenDatos.getConnection();
+			
 		// crear la instruccion sql que inserte el producto
+		String sql = "INSERT INTO productos (CÓDIGOARTÍCULO,SECCIÓN,NOMBREARTÍCULO,PRECIO,FECHA,IMPORTADO,PAÍSDEORIGEN) "+ 
+					"VALUES (?, ?, ?, ?, ?, ?, ?)";
+		consulta = conexion.prepareStatement(sql);
+
 		
 		// establecer los parametros para el producto
 		
+		consulta.setString(1, producto.getCodigoArt());
+		consulta.setString(2, producto.getSeccion());
+		consulta.setString(3, producto.getNombreArt());
+		consulta.setDouble(4, producto.getPrecio());
+		java.util.Date fecha = producto.getFecha();
+		java.sql.Date fecha_sql = new java.sql.Date(fecha.getTime());
+		consulta.setDate(5, fecha_sql);
+		consulta.setBoolean(6, producto.getImportado());
+		consulta.setString(7, producto.getPaisOrigen());
 		// ejecutar la instruccion SQL
+		
+		consulta.execute();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 	}
 }

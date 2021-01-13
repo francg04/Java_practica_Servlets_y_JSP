@@ -90,7 +90,7 @@ public class ControladorProductos extends HttpServlet
 		boolean importado = Boolean.parseBoolean(request.getParameter("rbtImportado"));
 		String origen = request.getParameter("txtOrigen");
 		
-		cargarPais(origen);
+		String pais = cargarPais(origen);
 		/*//PRUEBAS
 		System.out.println("DATOS: ");
 		System.out.println("Pais de origen: "+origen);
@@ -105,46 +105,50 @@ public class ControladorProductos extends HttpServlet
 			
 		//Crear un objeto de tipo Producto
 		
-		Producto producto = new Producto(codigo, seccion, articulo, precio, fecha, importado, origen);
+		Producto producto = new Producto(codigo, seccion, articulo, precio, fecha, importado, pais);
 		
 		//Enviar el objeto al modelo y despues insertar el objeto Producto en la BBDD
 		modelo_productos.agregarProducto(producto);
+		
 		//Volver al listado de Productos
+		obtenerProductos(request, response);
 	}
-	private void cargarPais(String pais)
+	private String cargarPais(String pais)
 	{
+		String resultado = "";
 		switch(pais) {
 		case "espania":{
-			pais="ESPAÑA";
+			resultado="ESPAÑA";
 		}break;
 		case "italia":{
-			pais="ITALIA";
+			resultado="ITALIA";
 		}break;
 		case "marruecos":{
-			pais="MARRUECOS";
+			resultado="MARRUECOS";
 		}break;
 		case "usa":{
-			pais="USA";
+			resultado="USA";
 		}break;
 		case "francia":{
-			pais="FRANCIA";
+			resultado="FRANCIA";
 		}break;
 		case "japon":{
-			pais="JAPÓN";
+			resultado="JAPÓN";
 		}break;
 		case "china":{
-			pais="CHINA";
+			resultado="CHINA";
 		}break;
 		case "suecia":{
-			pais="SUECIA";
+			resultado="SUECIA";
 		}break;
 		case "turquia":{
-			pais="TURQUÍA";
+			resultado="TURQUÍA";
 		}break;
 		case "taiwan":{
-			pais="TAIWÁN";
+			resultado="TAIWÁN";
 		}break;
 		}
+		return resultado;
 	}
 
 	private void obtenerProductos(HttpServletRequest request, HttpServletResponse response)

@@ -45,7 +45,7 @@
 			</select></td>
 		</tr>
 		<tr>
-			<td><input type="submit" name="enviar" value="Actualizar"></td><td><input type="reset" name="borrar" value="Refrescar"></td>
+			<td><input type="submit" name="Insertar" value="Refrescar"></td><td><input type="reset" name="borrar" value="Refrescar"></td>
 		</tr>
 	</table>
 </form>
