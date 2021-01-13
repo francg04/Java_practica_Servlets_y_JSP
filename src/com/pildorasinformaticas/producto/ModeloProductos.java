@@ -59,7 +59,6 @@ public class ModeloProductos
 	public void agregarProducto(Producto producto){
 		Connection conexion = null;
 		PreparedStatement consulta = null;
-		ResultSet resultado = null;
 		
 		// obtener la conexion
 		try {
@@ -89,5 +88,48 @@ public class ModeloProductos
 			
 			e.printStackTrace();
 		}
+	}
+
+	public Producto obtenerProducto(String cod_articulo) throws Exception {
+		Producto producto = null;
+		Connection conexion = null;
+		PreparedStatement consulta = null;
+		ResultSet resultado = null;
+		
+		// Establecer la conexion con la BBDD
+		
+		try {
+			conexion = origenDatos.getConnection();
+			
+			// Crear SQL que busque el producto
+			String sql = "SELECT * FROM Productos WHERE CÓDIGOARTÍCULO=?";
+			
+			// Crear la consulta preparada
+			consulta = conexion.prepareStatement(sql);
+			
+			// Establecer los parametros
+			consulta.setString(1, cod_articulo);
+			
+			// Ejecutar la consulta
+			 resultado = consulta.executeQuery();
+			
+			// Obtener los datos de respuesta
+			 if(resultado.next()) {
+				 producto = new Producto(resultado.getString("CÓDIGOARTÍCULO"),
+						   				 resultado.getString("SECCIÓN"),
+						   				 resultado.getString("NOMBREARTÍCULO"),
+						   				 resultado.getDouble("PRECIO"),
+						   				 resultado.getDate("FECHA"),
+						   				 resultado.getBoolean("IMPORTADO"),
+						   				 resultado.getString("PAÍSDEORIGEN"));
+			 }else {
+				 throw new Exception("No hemos encontrado el producto con codigo articulo = "+cod_articulo);
+			 }
+			 
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return producto;
 	}
 }

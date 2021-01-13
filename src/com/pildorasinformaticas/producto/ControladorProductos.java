@@ -65,10 +65,34 @@ public class ControladorProductos extends HttpServlet
 		case "insertarBBDD":{
 			agregarProducto(request, response);
 		}break;
+		case "cargar":{
+			try {
+				actualizarProductos(request, response);
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+		}break;
 		default:{
 			obtenerProductos(request, response);
 		}
 		}
+	}
+	private void actualizarProductos(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// Leer el parametro Cod_Articulo que viene de la pagina JSP
+		String cod_articulo = request.getParameter("Cod_Articulo");
+		
+		// Enviar Cod_Articulo al Modelo
+		Producto producto = modelo_productos.obtenerProducto(cod_articulo);
+		
+		// Colocar atributo correspondiente al Cod_Articulo
+		
+		request.setAttribute("CODIGO_ARTICULO", producto);
+		
+		// Enviar Producto al formulario de actualizar (jsp)
+		
+		RequestDispatcher mensajero = request.getRequestDispatcher("/actualizarProducto.jsp");
+		mensajero.forward(request, response);
 	}
 	private void agregarProducto(HttpServletRequest request, HttpServletResponse response) {
 		//Leer la informacion del producto que viene del formulario
